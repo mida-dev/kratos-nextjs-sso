@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -30,24 +31,42 @@ export function AuthFrame({ children }: AuthFrameProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="grid min-h-screen lg:grid-cols-[minmax(22rem,0.78fr)_minmax(34rem,1fr)]">
-        <aside className="relative hidden overflow-hidden bg-secondary px-10 py-10 text-secondary-foreground lg:flex lg:flex-col lg:justify-between xl:px-14">
+        <aside className="relative hidden overflow-hidden bg-secondary px-10 py-10 text-white lg:flex lg:flex-col lg:justify-between xl:px-14">
+          <Image
+            src="/auth-sidebar-bg-light.jpg"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 1023px) 0px, 50vw"
+            className="pointer-events-none object-cover brightness-[0.60] dark:hidden"
+            aria-hidden="true"
+          />
+          <Image
+            src="/auth-sidebar-bg-dark.jpg"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 1023px) 0px, 50vw"
+            className="pointer-events-none hidden object-cover brightness-[0.55] dark:block"
+            aria-hidden="true"
+          />
           <div className="relative z-10">
             <Brand inverted />
           </div>
 
           <div className="relative z-10 max-w-md">
-            <Badge className="border-secondary-foreground/20 bg-secondary-foreground/10 text-secondary-foreground hover:bg-secondary-foreground/15">
+            <Badge className="border-white/20 bg-white/10 text-white hover:bg-white/15">
               <span className="mr-1.5 inline-block size-1.5 rounded-full bg-primary" />
               {t("auth.shell.badge")}
             </Badge>
-            <h2 className="mt-8 max-w-sm text-4xl font-semibold leading-[1.03] tracking-[-0.05em] xl:text-5xl">
+            <h2 className="mt-8 max-w-sm text-4xl font-semibold leading-[1.03] tracking-tighter xl:text-5xl">
               {t("auth.shell.title")}
             </h2>
-            <p className="mt-6 max-w-xs text-sm leading-6 text-secondary-foreground/70">
+            <p className="mt-6 max-w-xs text-sm leading-6 text-white/70">
               {t("auth.shell.description")}
             </p>
 
-            <div className="mt-10 grid max-w-md gap-3 border-t border-secondary-foreground/15 pt-5 text-xs text-secondary-foreground/70">
+            <div className="mt-10 grid max-w-md gap-3 border-t border-white/15 pt-5 text-xs text-white/70">
               <div className="flex items-center justify-between gap-4">
                 <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-primary">
                   {t("auth.shell.sessionLabel")}
@@ -63,7 +82,7 @@ export function AuthFrame({ children }: AuthFrameProps) {
             </div>
           </div>
 
-          <p className="relative z-10 font-mono text-[10px] uppercase tracking-[0.18em] text-secondary-foreground/50">
+          <p className="relative z-10 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50">
             {t("auth.shell.footerPrivate")}
           </p>
         </aside>
