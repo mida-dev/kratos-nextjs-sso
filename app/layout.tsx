@@ -10,10 +10,7 @@ import { brandName } from "@/lib/branding";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -38,7 +35,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={cn("h-full antialiased font-sans", geistMono.variable, inter.variable)}
+      className={cn("h-full antialiased font-sans", geistMono.variable, "font-sans", inter.variable)}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
