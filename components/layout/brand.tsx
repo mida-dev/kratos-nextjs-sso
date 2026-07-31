@@ -1,12 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  brandLogoDark,
-  brandLogoLight,
-  brandMark,
-  brandName,
-} from "@/lib/branding";
+import { brandLogoDark, brandLogoLight, brandMark } from "@/lib/branding";
 import { cn } from "@/lib/utils";
 
 type BrandProps = {
@@ -16,21 +11,22 @@ type BrandProps = {
 
 export function Brand({ className, inverted = false }: BrandProps) {
   const hasLogo = Boolean(brandLogoLight || brandLogoDark);
+  const logoClass = cn("h-8 w-auto", inverted ? "hidden" : "dark:hidden");
   const logo = (
     <>
       <Image
         src={brandLogoLight}
         alt=""
-        width={32}
-        height={32}
-        className={cn("size-8", inverted ? "hidden" : "dark:hidden")}
+        width={1488}
+        height={356}
+        className={logoClass}
       />
       <Image
         src={brandLogoDark}
         alt=""
-        width={32}
-        height={32}
-        className={cn("hidden size-8", inverted ? "block" : "dark:block")}
+        width={1488}
+        height={356}
+        className={cn("hidden h-8 w-auto", inverted ? "block" : "dark:block")}
       />
     </>
   );
@@ -58,7 +54,6 @@ export function Brand({ className, inverted = false }: BrandProps) {
           {brandMark}
         </span>
       )}
-      <span>{brandName}</span>
     </Link>
   );
 }
