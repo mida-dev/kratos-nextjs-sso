@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { brandLogoDark, brandLogoLight, brandMark } from "@/lib/branding";
+import {
+  brandLogoDark,
+  brandLogoLight,
+  brandMark,
+  brandName,
+} from "@/lib/branding";
 import { cn } from "@/lib/utils";
 
 type BrandProps = {
@@ -34,6 +39,7 @@ export function Brand({ className, inverted = false }: BrandProps) {
   return (
     <Link
       href="/"
+      aria-label={brandName}
       className={cn(
         "group inline-flex items-center gap-3 text-sm font-semibold tracking-[0.16em]",
         inverted ? "text-secondary-foreground" : "text-foreground",
