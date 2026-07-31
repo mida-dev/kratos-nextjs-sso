@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import type { ReactNode } from "react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -32,22 +31,16 @@ export function AuthFrame({ children }: AuthFrameProps) {
     <div className="min-h-screen bg-background text-foreground">
       <div className="grid min-h-screen lg:grid-cols-[minmax(22rem,0.78fr)_minmax(34rem,1fr)]">
         <aside className="relative hidden overflow-hidden bg-secondary px-10 py-10 text-white lg:flex lg:flex-col lg:justify-between xl:px-14">
-          <Image
+          <img
             src="/auth-sidebar-bg-light.jpg"
             alt=""
-            fill
-            priority
-            sizes="(max-width: 1023px) 0px, 50vw"
-            className="pointer-events-none object-cover brightness-[0.60] dark:hidden"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover brightness-[0.60] dark:hidden"
             aria-hidden="true"
           />
-          <Image
+          <img
             src="/auth-sidebar-bg-dark.jpg"
             alt=""
-            fill
-            priority
-            sizes="(max-width: 1023px) 0px, 50vw"
-            className="pointer-events-none hidden object-cover brightness-[0.55] dark:block"
+            className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover brightness-[0.55] dark:block"
             aria-hidden="true"
           />
           <div className="relative z-10">
