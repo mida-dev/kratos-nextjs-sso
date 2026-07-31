@@ -51,8 +51,9 @@ export function AuthFrame({ children }: AuthFrameProps) {
             aria-hidden="true"
           />
           <div className="relative z-10">
-            <Brand inverted />
+            <Brand />
           </div>
+
 
           <div className="relative z-10 max-w-md">
             <Badge className="border-white/20 bg-white/10 text-white hover:bg-white/15">
