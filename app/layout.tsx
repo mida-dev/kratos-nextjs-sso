@@ -4,6 +4,7 @@ import { Geist_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationFeedback } from "@/components/layout/navigation-feedback";
 import { FaviconProvider } from "@/components/layout/favicon-provider";
+import { Toaster } from "@/components/ui/toast";
 import { I18nProvider } from "@/lib/i18n/client";
 import { getLocale } from "@/lib/i18n/server";
 import { brandName } from "@/lib/branding";
@@ -27,6 +28,12 @@ export const metadata: Metadata = {
 };
 
 
+/**
+ * Defines the root document layout for the application.
+ *
+ * @param children - The page content rendered within the application providers
+ * @returns The localized document layout containing the provided page content
+ */
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -50,6 +57,7 @@ export default async function RootLayout({
           >
             <FaviconProvider />
             <NavigationFeedback />
+            <Toaster />
             {children}
           </ThemeProvider>
         </I18nProvider>
@@ -57,4 +65,3 @@ export default async function RootLayout({
     </html>
   );
 }
-
