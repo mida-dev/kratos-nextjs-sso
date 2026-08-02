@@ -52,6 +52,7 @@ Copy `.env.example` to `.env.local` and set your public app URL and Ory SDK URL:
 ```env
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_ORY_SDK_URL=https://your-project.projects.oryapis.com
+NEXT_PUBLIC_ORY_OAUTH_ORIGINS=https://accounts.google.com
 NEXT_PUBLIC_ORY_PROJECT_NAME=Your Platform
 ORY_PROJECT_API_TOKEN=ory_pat_...
 ```
@@ -114,6 +115,7 @@ docker build \
   --build-arg "NEXT_PUBLIC_BRAND_NAME=Your Platform" \
   --build-arg "NEXT_PUBLIC_BRAND_MARK=YP" \
   --build-arg "NEXT_PUBLIC_ORY_SDK_URL=https://your-project.projects.oryapis.com" \
+  --build-arg "NEXT_PUBLIC_ORY_OAUTH_ORIGINS=https://accounts.google.com" \
   -t kratos-nextjs-sso:latest .
 
 docker run --rm -p 3000:3000 \
@@ -168,7 +170,18 @@ pnpm build
 pnpm test:e2e
 ```
 
-The automated suite covers Ory flow helpers, security boundaries, localization key parity, health behavior, and the unconfigured smoke experience. Real sign-in, registration, recovery, verification, and settings behavior requires a configured Ory project.
+The automated suite covers Ory flow helpers, security boundaries, localization key parity, health behavior, the unconfigured smoke experience, and real local Kratos auth flows. Production sign-in, registration, recovery, verification, and settings behavior requires a configured Ory project.
+
+The CI workflow also runs the auth suite against a pinned, ephemeral Ory Kratos container. To reproduce that suite locally on Linux:
+
+```bash
+export PLAYWRIGHT_KRATOS_PORT=4010
+docker compose -p kratos-e2e -f tests/fixtures/kratos/docker-compose.yml run --rm kratos \
+  -c /etc/config/kratos/kratos.yml migrate sql -e --yes
+docker compose -p kratos-e2e -f tests/fixtures/kratos/docker-compose.yml up -d kratos
+PLAYWRIGHT_KRATOS_MODE=real pnpm test:e2e:auth
+docker compose -p kratos-e2e -f tests/fixtures/kratos/docker-compose.yml down --volumes
+```
 
 ## Keep Exploring
 
