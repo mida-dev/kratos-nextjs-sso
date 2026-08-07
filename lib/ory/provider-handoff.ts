@@ -258,10 +258,10 @@ export function isProviderHandoff(params: FlowSearchParams) {
 }
 
 /**
- * Converts provider handoff parameters into a clean Kratos browser-flow request.
+ * Converts provider handoff parameters into Kratos browser-flow parameters.
  *
  * @param params - Provider or non-provider flow parameters
- * @returns The transformed flow parameters, the original parameters for non-provider requests, or `null` for an invalid provider handoff
+ * @returns The original parameters for non-provider requests, transformed parameters for valid handoffs, or `null` for invalid provider handoffs
  */
 export function providerLoginParams(params: FlowSearchParams): FlowSearchParams | null {
   if (!isProviderHandoff(params)) {
@@ -282,6 +282,7 @@ export function providerLoginParams(params: FlowSearchParams): FlowSearchParams 
     const callback = new URL(handoff.providerReturnTo);
     callback.searchParams.set("transaction", handoff.transaction);
     callback.searchParams.set("csrf", handoff.csrf);
+    clean.aal = "aal2";
     clean.return_to = callback.toString();
   } else {
     clean.return_to = consentReturnTo(handoff);
