@@ -24,8 +24,18 @@ export default async function Home({ searchParams }: HomeProps) {
   const { t } = await getTranslations(searchParams);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
+    <div className="relative isolate min-h-screen overflow-hidden text-foreground">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 scale-105 bg-cover bg-center bg-no-repeat blur-[4px] brightness-[0.92] grayscale-[0.2] saturate-[0.65] dark:brightness-[0.45] dark:grayscale-[0.35] dark:saturate-[0.55]"
+        style={{ backgroundImage: "url('/main-bg.jpeg')" }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 bg-background/85 backdrop-blur-sm dark:bg-background/90"
+      />
+
+      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
         <Brand />
         <nav className="flex items-center gap-2 text-sm" aria-label={t("common.navigation.primary")}>
           <ThemeToggle />
@@ -44,7 +54,7 @@ export default async function Home({ searchParams }: HomeProps) {
         </nav>
       </header>
 
-      <main className="mx-auto max-w-7xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-10">
+      <main className="relative z-10 mx-auto max-w-7xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-10">
         <section className="grid items-end gap-12 pb-20 pt-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.6fr)] lg:gap-20 lg:pt-24">
           <div>
             <Badge className="gap-2 border-primary/20 bg-primary/5 text-primary" variant="outline">
